@@ -1,10 +1,18 @@
 'use client'
 
-import { createCustomer } from '../../lib/action'
+import { createCustomer } from '../../lib/action';
 
 export default function UserForm() {
+  // Create a wrapper function to handle the return type
+  async function handleSubmit(formData: FormData) {
+    const result = await createCustomer(formData);
+    if (result.message) {
+      alert(result.message); // Or use a state to show a nice message
+    }
+  }
+
   return (
-    <form action={createCustomer} className="flex flex-col gap-4 p-6 bg-white rounded-lg shadow-sm border text-black">
+    <form action={handleSubmit} className="flex flex-col gap-4 p-6 bg-white rounded-lg shadow-sm border text-black">
       <h2 className="text-xl font-bold border-b pb-2">Register New Customer</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

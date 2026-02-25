@@ -1,5 +1,11 @@
 import { prisma } from '@/lib/prisma';
 import { customer } from '@prisma/client';
+import { Metadata } from 'next';
+
+// Add this metadata export
+export const metadata: Metadata = {
+  title: 'search result', 
+};
 
 // Helper to parse "1,2,3" or "18-30" or "25"
 const parseRangeOrList = (input: string | undefined) => {

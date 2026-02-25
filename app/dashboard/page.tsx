@@ -3,9 +3,15 @@ import { prisma } from '@/lib/prisma'
 import { customer } from '@prisma/client'
 
 
+import { Metadata } from 'next'
 import AddCustomerForm from './AddCustomerForm'
 import DashboardControls from './DashboardControls'
 import DeleteButton from './DeleteButton'
+
+// Add this metadata export
+export const metadata: Metadata = {
+  title: 'Dashboard', 
+};
 
 export default async function UsersPage() {
   const customers = await prisma.customer.findMany() // Direct DB Connection
