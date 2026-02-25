@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { customer } from '@prisma/client'
 
 
+import AddCustomerForm from './AddCustomerForm'
 import DashboardControls from './DashboardControls'
 import DeleteButton from './DeleteButton'
 
@@ -13,6 +14,10 @@ export default async function UsersPage() {
  <main className="p-10 space-y-10">
       <h1 className="text-2xl font-bold">Customer Management</h1>
       <DashboardControls />
+      {/* Form Section */}
+      <section>
+        <AddCustomerForm />
+      </section>
       <section>
         <h2 className="text-xl font-semibold mb-4">Existing Customers</h2>
         
