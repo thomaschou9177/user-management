@@ -2,9 +2,9 @@ import { prisma } from '@/lib/prisma'
 
 import { customer } from '@prisma/client'
 
-import { deleteCustomer } from '@/lib/action'
 
 import DashboardControls from './DashboardControls'
+import DeleteButton from './DeleteButton'
 
 export default async function UsersPage() {
   const customers = await prisma.customer.findMany() // Direct DB Connection
@@ -39,12 +39,7 @@ export default async function UsersPage() {
                 <td className="px-4 py-2">{user.isMember?'Yes' :'No'}</td>
                 <td className="px-4 py-2">{user.createdAt.toISOString()}</td>
                 <td className="px-4 py-2">
-                  <form action={async () => {
-                    'use server'
-                    await deleteCustomer(user.id)
-                  }}>
-                    <button className="text-red-500 hover:underline">Delete</button>
-                  </form>
+                  <DeleteButton id={user.id} />
                 </td>
               </tr>
             ))}

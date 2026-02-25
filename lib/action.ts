@@ -16,8 +16,14 @@ export async function createCustomer(formData: FormData) {
 }
 
 export async function deleteCustomer(id: number) {
+  try{
   await prisma.customer.delete({
     where: { id },
   })
   revalidatePath('/dashboard')
+  // This is a valid object return in action.ts
+    return { success: true, message: "Deleted successfully" }; 
+  } catch (error) {
+    return { success: false, message: "Delete failed" };
+  }
 }
